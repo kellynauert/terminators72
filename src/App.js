@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import React, { useEffect, useState } from 'react';
 import { Button } from 'reactstrap';
+import NASA_App from './components/nasa/NASA_App';
 
 function App() {
 	const [sessionLatitude, setSessionLatitude] = useState('');
@@ -40,6 +41,7 @@ function App() {
 			<h1>Ryan's branch</h1>
 			<h1>Sarah's branch</h1>
 			<Button onClick={getLocation}>Click</Button>
+			<NASA_App />
 		</div>
 	);
 }
