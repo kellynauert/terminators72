@@ -1,23 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
-import React, { useEffect, useState } from 'react';
-import { Button } from 'reactstrap';
+import React, { useState } from 'react';
+import { Container, Row } from 'reactstrap';
+import Jobs from './components/jobs/Jobs';
 
 function App() {
 	const [sessionLatitude, setSessionLatitude] = useState('');
 	const [sessionLongitude, setSessionLongitude] = useState('');
-
-	useEffect(() => {
-		if (localStorage.getItem('Latitude')) {
-			setSessionLatitude(localStorage.getItem('Latitude'));
-		}
-	});
-
-	useEffect(() => {
-		if (localStorage.getItem('Longitude')) {
-			setSessionLatitude(localStorage.getItem('Longitude'));
-		}
-	});
 
 	const updatePosition = (newPosition) => {
 		localStorage.setItem('Latitude', newPosition.coords.latitude);
@@ -35,11 +24,11 @@ function App() {
 
 	return (
 		<div className='App'>
-			<h1>Kelly</h1>
-			<h3>Kenneth</h3>
-			<h1>Ryan's branch</h1>
-			<h1>Sarah's branch</h1>
-			<Button onClick={getLocation}>Click</Button>
+			<Container>
+				<Row>
+					<Jobs latitude={sessionLatitude} longitude={sessionLongitude} />{' '}
+				</Row>
+			</Container>
 		</div>
 	);
 }
