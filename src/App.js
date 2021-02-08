@@ -1,24 +1,40 @@
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import './App.css';
+//import Location from './components/Location'
+import Restaurant from './components/Restaurant';
+import React, { useState, useEffect } from 'react';
 
 function App() {
+	const [sessionLatitude, setSessionLatitude] = useState('');
+	const [sessionLongitude, setSessionLongitude] = useState('');
+	useEffect(() => {
+		if (localStorage.getItem('Latitude')) {
+			setSessionLatitude(localStorage.getItem('Latitude'));
+		}
+	});
+	useEffect(() => {
+		if (localStorage.getItem('Longitude')) {
+			setSessionLongitude(localStorage.getItem('Longitude'));
+		}
+	});
+	const updatePosition = (newPosition) => {
+		localStorage.setItem('Latitude', newPosition.coords.latitude);
+		setSessionLatitude(newPosition.coords.latitude);
+		localStorage.setItem('Longitude', newPosition.coords.longitude);
+		setSessionLongitude(newPosition.coords.longitude);
+	};
+	function getLocation() {
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(updatePosition);
+		} else {
+			alert('Geolocation is not supported by this browser.');
+		}
+	}
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h1>Sarah's branch</h1>
-          Learn React
-        </a>
-      </header>
+    <div>
+      Does this work
+     <Restaurant />
     </div>
   );
 }
