@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import React, { useState } from 'react';
-import { Container, Row } from 'reactstrap';
+import { Container, Row, Button } from 'reactstrap';
 import Jobs from './components/jobs/Jobs';
 
 function App() {
@@ -11,6 +11,7 @@ function App() {
 	const updatePosition = (newPosition) => {
 		localStorage.setItem('Latitude', newPosition.coords.latitude);
 		setSessionLatitude(newPosition.coords.latitude);
+
 		localStorage.setItem('Longitude', newPosition.coords.longitude);
 		setSessionLongitude(newPosition.coords.longitude);
 	};
@@ -24,6 +25,7 @@ function App() {
 
 	return (
 		<div className='App'>
+			<Button onClick={getLocation}>Click</Button>
 			<Container>
 				<Row>
 					<Jobs latitude={sessionLatitude} longitude={sessionLongitude} />{' '}
