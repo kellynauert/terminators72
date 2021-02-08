@@ -33,7 +33,6 @@ function App() {
 	});
 	return (
 		<div className='App'>
-			<Button onClick={getLocation}>Click</Button>
 			<Container>
 				<Row>
 					{/* if your component's return is wrapped in <Col sm="auto"></Col> you can plop it next to mine and they should adjust to one another */}
