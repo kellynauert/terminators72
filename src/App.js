@@ -16,7 +16,7 @@ function App() {
 
 	useEffect(() => {
 		if (localStorage.getItem('Longitude')) {
-			setSessionLatitude(localStorage.getItem('Longitude'));
+			setSessionLongitude(localStorage.getItem('Longitude'));
 		}
 	});
 
@@ -41,7 +41,7 @@ function App() {
 			<h1>Ryan's branch</h1>
 			<h1>Sarah's branch</h1>
 			<Button onClick={getLocation}>Click</Button>
-			<NASA_App />
+			<NASA_App sessionLatitude={sessionLatitude} sessionLongitude={sessionLongitude}/>
 		</div>
 	);
 }
