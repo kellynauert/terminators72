@@ -8,8 +8,8 @@ const Jobs = (props) => {
 
 	const fetchJobs = () => {
 		const corsURL = 'https://efa-cors-anywhere.herokuapp.com/';
-		// const gitJobURL = `https://jobs.github.com/positions.json?lat=${lat}&&long=${long}`;
-		const gitJobURL = `https://jobs.github.com/positions.json?lat=37.3229978&long=-122.0321823`;
+		const gitJobURL = `https://jobs.github.com/positions.json?lat=${lat}&&long=${long}`;
+		// const gitJobURL = `https://jobs.github.com/positions.json?lat=37.3229978&long=-122.0321823`;
 		fetch(corsURL + gitJobURL)
 			.then((res) => res.json())
 			.then((json) => {

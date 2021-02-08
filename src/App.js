@@ -15,6 +15,7 @@ function App() {
 		localStorage.setItem('Longitude', newPosition.coords.longitude);
 		setSessionLongitude(newPosition.coords.longitude);
 	};
+
 	function getLocation() {
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(updatePosition);
