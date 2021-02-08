@@ -1,22 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import {
-	Button,
-	Card,
-	CardText,
-	CardBody,
-	CardTitle,
-	CardImg,
-	Collapse,
-	Row,
-	Col,
-} from 'reactstrap';
+import { Button, Collapse, Row, Col } from 'reactstrap';
 
 const JobsDisplay = (props) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const toggle = () => setIsOpen(!isOpen);
 
 	return (
-		<Row className='Job-Card' noGutters='true'>
+		<Row className='Job-Card'>
 			<Col sm='8'>
 				<div>
 					<div className='card-title2'>{props.jobs.title}</div>
