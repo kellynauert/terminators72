@@ -43,6 +43,7 @@
 	width: auto;
 	margin-left: 8px;
 }
+
 .Job-Card {
 	text-align: left;
 	border: #afafaf solid 1px;
@@ -55,14 +56,9 @@
 	font-weight: 600;
 	margin-bottom: 0;
 }
+
 .Job-Card .card-text2 {
 	font-size: 14px;
-}
-
-.flex-row {
-	flex-direction: row;
-	display: flex;
-	align-items: center;
 }
 
 .text-toggle {
@@ -72,15 +68,13 @@
 	margin-top: 12px;
 	margin-bottom: 0;
 }
+
 .Job-Card hr {
 	border-top: #afafaf solid 1px;
 }
 
 .Job-Button {
 	margin-top: 12px;
-}
-.Job-Button .btn {
-	width: 100%;
 }
 
 .Job-Section {
