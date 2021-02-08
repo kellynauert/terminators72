@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useEffect, useState } from 'react';
-import { Button, Row, Container } from 'reactstrap';
+import { Row, Container } from 'reactstrap';
 import Jobs from './components/jobs/Jobs';
 
 function App() {
@@ -11,9 +11,6 @@ function App() {
 		if (localStorage.getItem('Latitude')) {
 			setSessionLatitude(localStorage.getItem('Latitude'));
 		}
-	});
-
-	useEffect(() => {
 		if (localStorage.getItem('Longitude')) {
 			setSessionLongitude(localStorage.getItem('Longitude'));
 		}
@@ -29,7 +26,6 @@ function App() {
 
 	useEffect(() => {
 		if (navigator.geolocation) {
-			console.log('Heu');
 			navigator.geolocation.getCurrentPosition(updatePosition);
 		} else {
 			alert('Geolocation is not supported by this browser.');
@@ -37,11 +33,9 @@ function App() {
 	});
 	return (
 		<div className='App'>
-			<p>
-				{sessionLongitude} + {sessionLatitude}
-			</p>
 			<Container>
 				<Row>
+					{/* if your component's return is wrapped in <Col sm="auto"></Col> you can plop it next to mine and they should adjust to one another */}
 					<Jobs
 						sessionLatitude={sessionLatitude}
 						sessionLongitude={sessionLongitude}

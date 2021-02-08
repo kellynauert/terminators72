@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Button, Collapse, Row, Col } from 'reactstrap';
 
 const JobsDisplay = (props) => {
@@ -9,19 +9,19 @@ const JobsDisplay = (props) => {
 		<Row className='Job-Card'>
 			<Col sm='8'>
 				<div>
-					<div className='card-title2'>{props.jobs.title}</div>
+					<div className='card-title2'>{props.job.title}</div>
 				</div>
 				<div>
-					<div className='card-text2'>{`${props.jobs.company}–${props.jobs.type}`}</div>
+					<div className='card-text2'>{`${props.job.company}–${props.job.type}`}</div>
 				</div>
 				<div className='text-toggle' onClick={toggle}>
-					View Description +
+					View Description
 				</div>
 			</Col>
 			<Col sm='4' className='Job-Button'>
 				<Button
 					color='primary'
-					href={props.jobs.url}
+					href={props.job.url}
 					target='_blank'
 					className='w-100'
 				>
@@ -33,7 +33,7 @@ const JobsDisplay = (props) => {
 					<hr />
 					<div
 						className='content'
-						dangerouslySetInnerHTML={{ __html: props.jobs.description }}
+						dangerouslySetInnerHTML={{ __html: props.job.description }}
 					></div>
 				</Collapse>
 			</Col>
