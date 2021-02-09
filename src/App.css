@@ -1,38 +1,83 @@
 .App {
-  text-align: center;
+	text-align: center;
 }
 
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+	height: 40vmin;
+	pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+	.App-logo {
+		animation: App-logo-spin infinite 20s linear;
+	}
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+	background-color: #282c34;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-size: calc(10px + 2vmin);
+	color: white;
 }
 
 .App-link {
-  color: #61dafb;
+	color: #61dafb;
 }
 
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+/* Jobs Css */
+.Job-Card img {
+	height: 20px;
+	width: auto;
+	margin-left: 8px;
+}
+
+.Job-Card {
+	text-align: left;
+	border: #afafaf solid 1px;
+	border-radius: 4px;
+	padding: 12px;
+	margin-bottom: 12px;
+}
+
+.Job-Card .card-title2 {
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.Job-Card .card-text2 {
+	font-size: 14px;
+}
+
+.text-toggle {
+	color: #797979;
+	font-size: 12px;
+	cursor: pointer;
+	margin-top: 12px;
+	margin-bottom: 0;
+}
+
+.Job-Card hr {
+	border-top: #afafaf solid 1px;
+}
+
+.Job-Button {
+	margin-top: 12px;
+}
+
+.Job-Section {
+	margin-top: 24px;
+	margin-bottom: 24px;
 }
