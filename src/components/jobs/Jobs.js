@@ -14,6 +14,7 @@ const Jobs = (props) => {
 			.then((res) => res.json())
 			.then((json) => {
 				setJobs(json);
+				console.log(json);
 			});
 	}
 	function displayCards() {

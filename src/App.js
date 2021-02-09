@@ -2,6 +2,7 @@ import './App.css';
 import React, { useEffect, useState } from 'react';
 import { Row, Container } from 'reactstrap';
 import Jobs from './components/jobs/Jobs';
+import Restaurants from "./components/restaurant/Restaurants";
 import Weather from './components/weather/Weather';
 
 function App() {
@@ -15,7 +16,7 @@ function App() {
     if (localStorage.getItem('Longitude')) {
       setSessionLongitude(localStorage.getItem('Longitude'));
     }
-  });
+  }, []);
 
   const updatePosition = (newPosition) => {
     localStorage.setItem('Latitude', newPosition.coords.latitude);
@@ -31,7 +32,15 @@ function App() {
     } else {
       alert('Geolocation is not supported by this browser.');
     }
-  });
+  }, []);
+
+  function displayRestaurants() {
+    return sessionLongitude && sessionLatitude ? (
+      <Restaurants lat={sessionLatitude} lon={sessionLongitude} /> ): null;
+    
+  }
+  
+});
 
   function displayWeather() {
     return sessionLatitude && sessionLongitude ? (
@@ -49,6 +58,7 @@ function App() {
             sessionLongitude={sessionLongitude}
           />
           {displayWeather()}
+          {displayRestaurants()}
         </Row>
       </Container>
     </div>
