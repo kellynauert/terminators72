@@ -36,7 +36,7 @@ function App() {
 
   function displayRestaurants() {
     return sessionLongitude && sessionLatitude ? (
-      <Restaurants lat= {sessionLatitude} lon={sessionLongitude} /> ): null;
+      <Restaurants lat={sessionLatitude} lon={sessionLongitude} /> ): null;
     
   }
   

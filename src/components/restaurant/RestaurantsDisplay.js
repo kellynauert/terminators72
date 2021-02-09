@@ -1,27 +1,27 @@
 import React, { useState } from 'react';
-import { Button, Collapse, Row, Col } from 'reactstrap';
+import { Button, Collapse, Row, Col, Card } from 'reactstrap';
 
 const RestaurantsDisplay = (props) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const toggle = () => setIsOpen(!isOpen);
-
+	//console.log(props.restaurant.restaurant.name)
 	return (
-		<Row className='Job-Card'>
+		<Card>
+		<Row className='Restaurant-Card'>
 			<Col sm='8'>
 				<div>
-					<div className='card-title2'>{props.restaurants}</div>
+					<div className='card-title2'>{props.restaurant.restaurant.name}</div>
 				</div>
 				<div>
-				{/*}	<div className='card-text2'>{`${props.restaurants.url}–${props.restaurants.thumb}`}</div> */}
-				</div>
+					{/* <div className='card-text2'>{`${props.restaurant.restaurant.cuisines}`}</div>*/} </div> 
 				<div className='text-toggle' onClick={toggle}>
-					View Description
+					{props.restaurant.restaurant.cuisines}
 				</div>
 			</Col>
 			<Col sm='4' className='Restaurant-Button'>
 				<Button
 					color='primary'
-					href={props.link}
+					href={props.restaurant.restaurant.url}
 					target='_blank'
 					className='w-100'
 				>
@@ -29,15 +29,15 @@ const RestaurantsDisplay = (props) => {
 				</Button>
 			</Col>
 			<Col sm='12'>
-				<Collapse isOpen={isOpen}>
-					<hr />
+				{/* <Collapse isOpen={isOpen}>
 					<div
 						className='content'
-						//dangerouslySetInnerHTML={{ __html: props.restaurant.review.review_text }}
-					></div>
-				</Collapse>
+						dangerouslySetInnerHTML={{ __html: props.restaurant.restaurant.cuisine}}>
+					</div>
+				</Collapse> */}
 			</Col>
 		</Row>
+		</Card>
 	);
 };
 
