@@ -3,30 +3,30 @@ import React, { useEffect, useState } from 'react';
 import { Row, Container } from 'reactstrap';
 import Jobs from './components/jobs/Jobs';
 import Restaurants from "./components/restaurant/Restaurants";
+import Weather from './components/weather/Weather';
 
 function App() {
-	const [sessionLatitude, setSessionLatitude] = useState('');
-	const [sessionLongitude, setSessionLongitude] = useState('');
-	useEffect(() => {
-    
-		if (localStorage.getItem('Latitude')) {
-		setSessionLatitude(localStorage.getItem('Latitude'));
-		 }
-		 if (localStorage.getItem('Longitude')) {
-		 	setSessionLongitude(localStorage.getItem('Longitude'));
-		 }
-  }, []); 
-  //dont need this since its in the hook and saving it again below in local storage
+  const [sessionLatitude, setSessionLatitude] = useState('');
+  const [sessionLongitude, setSessionLongitude] = useState('');
 
-	const updatePosition = (newPosition) => {
-	localStorage.setItem('Latitude', newPosition.coords.latitude); //saving it to local here
-		setSessionLatitude(newPosition.coords.latitude); //setting up here
+  useEffect(() => {
+    if (localStorage.getItem('Latitude')) {
+      setSessionLatitude(localStorage.getItem('Latitude'));
+    }
+    if (localStorage.getItem('Longitude')) {
+      setSessionLongitude(localStorage.getItem('Longitude'));
+    }
+  }, []);
 
-	localStorage.setItem('Longitude', newPosition.coords.longitude); //saving it to local here
-		setSessionLongitude(newPosition.coords.longitude); //setting up hook here
-	};
-  
-	useEffect(() => {
+  const updatePosition = (newPosition) => {
+    localStorage.setItem('Latitude', newPosition.coords.latitude);
+    setSessionLatitude(newPosition.coords.latitude);
+
+    localStorage.setItem('Longitude', newPosition.coords.longitude);
+    setSessionLongitude(newPosition.coords.longitude);
+  };
+
+  useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(updatePosition);
     } else {
@@ -40,21 +40,29 @@ function App() {
     
   }
   
+});
 
-	return (
-		<div className='App'>
-			<Container>
-				<Row>
-					{/* if your component's return is wrapped in <Col sm="auto"></Col> you can plop it next to mine and they should adjust to one another */}
-					<Jobs
-						sessionLatitude={sessionLatitude}
-						sessionLongitude={sessionLongitude}
-					/>
+  function displayWeather() {
+    return sessionLatitude && sessionLongitude ? (
+      <Weather lat={sessionLatitude} lon={sessionLongitude} />
+    ) : null;
+  }
+
+  return (
+    <div className="App">
+      <Container>
+        <Row>
+          {/* if your component's return is wrapped in <Col sm="auto"></Col> you can plop it next to mine and they should adjust to one another */}
+          <Jobs
+            sessionLatitude={sessionLatitude}
+            sessionLongitude={sessionLongitude}
+          />
+          {displayWeather()}
           {displayRestaurants()}
-				</Row>
-			</Container>
-		</div>
-	);
+        </Row>
+      </Container>
+    </div>
+  );
 }
 
 export default App;
