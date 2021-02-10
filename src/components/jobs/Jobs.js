@@ -28,7 +28,7 @@ const Jobs = (props) => {
 	}
 
 	return (
-		<Col sm='auto' className='Job-Section'>
+		<Col sm='6' className='Job-Section'>
 			<h5>
 				{jobs ? `There Are ${jobs.length} Jobs Near You` : 'Loading Jobs'}
 			</h5>

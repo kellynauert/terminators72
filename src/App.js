@@ -4,6 +4,7 @@ import { Row, Container } from 'reactstrap';
 import Jobs from './components/jobs/Jobs';
 import Restaurants from "./components/restaurant/Restaurants";
 import Weather from './components/weather/Weather';
+import NASA_App from './components/nasa/NASA_App';
 
 function App() {
   const [sessionLatitude, setSessionLatitude] = useState('');
@@ -39,8 +40,6 @@ function App() {
       <Restaurants lat={sessionLatitude} lon={sessionLongitude} /> ): null;
     
   }
-  
-});
 
   function displayWeather() {
     return sessionLatitude && sessionLongitude ? (
@@ -59,6 +58,7 @@ function App() {
           />
           {displayWeather()}
           {displayRestaurants()}
+		  <NASA_App sessionLatitude={sessionLatitude} sessionLongitude={sessionLongitude}/>
         </Row>
       </Container>
     </div>
