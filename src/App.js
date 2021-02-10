@@ -1,49 +1,68 @@
-import logo from './logo.svg';
 import './App.css';
 import React, { useEffect, useState } from 'react';
-import { Button } from 'reactstrap';
+import { Row, Container } from 'reactstrap';
+import Jobs from './components/jobs/Jobs';
+import Restaurants from "./components/restaurant/Restaurants";
+import Weather from './components/weather/Weather';
 import NASA_App from './components/nasa/NASA_App';
 
 function App() {
-	const [sessionLatitude, setSessionLatitude] = useState('');
-	const [sessionLongitude, setSessionLongitude] = useState('');
+  const [sessionLatitude, setSessionLatitude] = useState('');
+  const [sessionLongitude, setSessionLongitude] = useState('');
 
-	useEffect(() => {
-		if (localStorage.getItem('Latitude')) {
-			setSessionLatitude(localStorage.getItem('Latitude'));
-		}
-	});
+  useEffect(() => {
+    if (localStorage.getItem('Latitude')) {
+      setSessionLatitude(localStorage.getItem('Latitude'));
+    }
+    if (localStorage.getItem('Longitude')) {
+      setSessionLongitude(localStorage.getItem('Longitude'));
+    }
+  }, []);
 
-	useEffect(() => {
-		if (localStorage.getItem('Longitude')) {
-			setSessionLongitude(localStorage.getItem('Longitude'));
-		}
-	});
+  const updatePosition = (newPosition) => {
+    localStorage.setItem('Latitude', newPosition.coords.latitude);
+    setSessionLatitude(newPosition.coords.latitude);
 
-	const updatePosition = (newPosition) => {
-		localStorage.setItem('Latitude', newPosition.coords.latitude);
-		setSessionLatitude(newPosition.coords.latitude);
-		localStorage.setItem('Longitude', newPosition.coords.longitude);
-		setSessionLongitude(newPosition.coords.longitude);
-	};
-	function getLocation() {
-		if (navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition(updatePosition);
-		} else {
-			alert('Geolocation is not supported by this browser.');
-		}
-	}
+    localStorage.setItem('Longitude', newPosition.coords.longitude);
+    setSessionLongitude(newPosition.coords.longitude);
+  };
 
-	return (
-		<div className='App'>
-			<h1>Kelly</h1>
-			<h3>Kenneth</h3>
-			<h1>Ryan's branch</h1>
-			<h1>Sarah's branch</h1>
-			<Button onClick={getLocation}>Click</Button>
-			<NASA_App sessionLatitude={sessionLatitude} sessionLongitude={sessionLongitude}/>
-		</div>
-	);
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(updatePosition);
+    } else {
+      alert('Geolocation is not supported by this browser.');
+    }
+  }, []);
+
+  function displayRestaurants() {
+    return sessionLongitude && sessionLatitude ? (
+      <Restaurants lat={sessionLatitude} lon={sessionLongitude} /> ): null;
+    
+  }
+
+  function displayWeather() {
+    return sessionLatitude && sessionLongitude ? (
+      <Weather lat={sessionLatitude} lon={sessionLongitude} />
+    ) : null;
+  }
+
+  return (
+    <div className="App">
+      <Container>
+        <Row>
+          {/* if your component's return is wrapped in <Col sm="auto"></Col> you can plop it next to mine and they should adjust to one another */}
+          <Jobs
+            sessionLatitude={sessionLatitude}
+            sessionLongitude={sessionLongitude}
+          />
+          {displayWeather()}
+          {displayRestaurants()}
+		  <NASA_App sessionLatitude={sessionLatitude} sessionLongitude={sessionLongitude}/>
+        </Row>
+      </Container>
+    </div>
+  );
 }
 
 export default App;
